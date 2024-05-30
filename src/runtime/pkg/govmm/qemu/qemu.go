@@ -2677,9 +2677,6 @@ type Knobs struct {
 	// NoGraphic completely disables graphic output.
 	NoGraphic bool
 
-	// Daemonize will turn the qemu process into a daemon
-	Daemonize bool
-
 	// Both HugePages and MemPrealloc require the Memory.Size of the VM
 	// to be set, as they need to reserve the memory upfront in order
 	// for the VM to boot without errors.
@@ -3116,10 +3113,6 @@ func (config *Config) appendKnobs() {
 
 	if config.Knobs.NoShutdown {
 		config.qemuParams = append(config.qemuParams, "--no-shutdown")
-	}
-
-	if config.Knobs.Daemonize {
-		config.qemuParams = append(config.qemuParams, "-daemonize")
 	}
 
 	config.appendMemoryKnobs()

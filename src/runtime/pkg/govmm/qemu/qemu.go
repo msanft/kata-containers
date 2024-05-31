@@ -2700,9 +2700,6 @@ type Knobs struct {
 	// Mlock will control locking of memory
 	Mlock bool
 
-	// Stopped will not start guest CPU at startup
-	Stopped bool
-
 	// Exit instead of rebooting
 	// Prevents QEMU from rebooting in the event of a Triple Fault.
 	NoReboot bool
@@ -3113,10 +3110,6 @@ func (config *Config) appendKnobs() {
 	if config.Knobs.Mlock {
 		config.qemuParams = append(config.qemuParams, "-overcommit")
 		config.qemuParams = append(config.qemuParams, "mem-lock=on")
-	}
-
-	if config.Knobs.Stopped {
-		config.qemuParams = append(config.qemuParams, "-S")
 	}
 }
 
